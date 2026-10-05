@@ -138,8 +138,9 @@
       transform: scale(.9)
     }
 
-    /* tarjetas de portada */
+    /* portada */
     .cards {
+      justify-content: center;
       display: flex;
       gap: 16px;
       overflow-x: auto;
@@ -241,16 +242,6 @@
       z-index: 2
     }
 
-    .gc.b {
-      --c1: #8a6cf0;
-      --c2: #5a46e0
-    }
-
-    .gc.c {
-      --c1: #f2748a;
-      --c2: #e0507a
-    }
-
     @keyframes bob {
       50% {
         transform: translateY(-8px) rotate(4deg)
@@ -313,6 +304,7 @@
 
     .ttl {
       flex: 1;
+      min-width: 0;
       font-size: clamp(1.05rem, 4.5vw, 1.6rem);
       font-weight: 700;
       text-shadow: 0 2px 0 rgba(0, 0, 0, .12);
@@ -362,6 +354,7 @@
     }
 
     .big .L {
+      padding: 0;
       font-size: clamp(4.5rem, 20vw, 8rem);
       font-weight: 700;
       line-height: 1;
@@ -404,19 +397,30 @@
       opacity: 1
     }
 
-    .big .sp {
+    .big .dots {
       position: absolute;
-      left: 12px;
-      bottom: 12px;
-      width: 54px;
-      height: 54px;
+      right: 14px;
+      top: 16px;
+      display: flex;
+      gap: 6px
+    }
+
+    .dots i {
+      width: 16px;
+      height: 16px;
       border-radius: 50%;
-      background: #fff;
-      color: #2f7fd6;
-      font-size: 1.5rem;
-      display: grid;
-      place-items: center;
-      box-shadow: 0 4px 0 rgba(0, 0, 0, .18)
+      border: 3px solid #fff
+    }
+
+    .dots i.f {
+      background: #fff
+    }
+
+    .big.ph {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 6px
     }
 
     .grid {
@@ -450,7 +454,8 @@
       outline: 4px solid #fff;
       outline-offset: 2px;
       transform: scale(1.1);
-      z-index: 2
+      z-index: 2;
+      animation: kp 1.4s ease-in-out infinite
     }
 
     .k.seen:after {
@@ -463,21 +468,9 @@
       text-shadow: 0 0 3px rgba(0, 0, 0, .6)
     }
 
-    .vow .k:not(.v) {
-      opacity: .3
-    }
-
-    .shake {
-      animation: sh .4s
-    }
-
-    @keyframes sh {
-      25% {
-        transform: translateX(-7px)
-      }
-
-      75% {
-        transform: translateX(7px)
+    @keyframes kp {
+      50% {
+        transform: scale(1.22)
       }
     }
 
@@ -506,6 +499,73 @@
       }
     }
 
+    /* copa */
+    .win {
+      position: fixed;
+      inset: 0;
+      z-index: 30;
+      background: rgba(20, 50, 120, .85);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      overflow: auto
+    }
+
+    .win[hidden] {
+      display: none
+    }
+
+    .wbox {
+      background: linear-gradient(#fff6c9, #ffe27a);
+      color: #7a4a00;
+      border-radius: 32px;
+      padding: 22px 18px;
+      max-width: 540px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 10px 0 rgba(0, 0, 0, .2)
+    }
+
+    .wbox h2 {
+      color: #c2410c;
+      text-shadow: none
+    }
+
+    .wbox p {
+      margin: 6px 0 16px;
+      font-weight: 600
+    }
+
+    .cup {
+      font-size: clamp(6rem, 30vw, 9rem);
+      line-height: 1.3;
+      padding-top: 8px;
+      animation: cup 1.4s ease-in-out infinite
+    }
+
+    @keyframes cup {
+      50% {
+        transform: scale(1.1) rotate(4deg)
+      }
+    }
+
+    .wb {
+      background: #3fb56b;
+      color: #fff;
+      font-weight: 700;
+      font-size: 1.2rem;
+      padding: 10px 22px;
+      border-radius: 30px;
+      margin: 4px;
+      box-shadow: 0 5px 0 #26864c
+    }
+
+    .wb.o {
+      background: #f59a1f;
+      box-shadow: 0 5px 0 #b86f0a
+    }
+
     @media (min-width:760px) {
       .cards {
         overflow: visible;
@@ -513,7 +573,7 @@
       }
 
       .gc {
-        flex: 1 1 0;
+        flex: 0 1 480px;
         max-width: none;
         height: 230px
       }
@@ -521,7 +581,6 @@
 
     @media (min-width:860px) {
       .gm {
-        grid-template-columns: 1fr;
         gap: 28px
       }
 
@@ -545,66 +604,58 @@
 </head>
 
 <body>
-
   <section id="home" class="screen on">
     <div class="nav">
-
       <div class="logo" aria-hidden="true">A<span>+</span></div>
-
-
-
-
-
       <div class="tabs">
         <button class="tab" data-m="learn" aria-label="Aprender letras">▶</button>
-        <button class="tab" data-m="find" aria-label="Buscar la letra">🎯</button>
-        <button class="tab" data-m="vow" aria-label="Vocales">🅰️</button>
         <span class="tab sel" aria-hidden="true">📖</span>
       </div>
       <button class="circ snd" aria-label="Sonido">🔊</button>
     </div>
     <h2>¡Vamos a jugar!</h2>
-
     <div class="cards">
-
       <button class="gc" data-m="learn"><span class="st">⭐</span><span class="em">🐛</span><span class="t1">Toca y
           escucha</span><span class="t2">LAS LETRAS</span><span class="go">▶</span></button>
-
-      <!-- <button class="gc b" data-m="find"><span class="st">⭐</span><span class="em">🦉</span><span
-          class="t1">Encuentra</span><span class="t2">LA LETRA</span><span class="go">▶</span></button> -->
-
-      <!-- <button class="gc c" data-m="vow"><span class="st">⭐</span><span class="em">🐘</span><span class="t1">Conoce
-          las</span><span class="t2">VOCALES</span><span class="go">▶</span></button> -->
     </div>
     <h2>Tus amigos del abecedario</h2>
     <div class="friends" id="friends"></div>
   </section>
 
   <section id="game" class="screen">
-
     <div class="nav">
       <button class="circ" id="menu" aria-label="Inicio">🏠</button>
-      <div class="ttl" id="ttl">Las letras</div>
+      <div class="ttl" id="ttl">Toca y escucha las letras</div>
       <div class="stars" id="stars">⭐ 0/27</div>
+      <button class="circ" id="reset" aria-label="Reiniciar">🔄</button>
       <button class="circ snd" aria-label="Sonido">🔊</button>
     </div>
-
     <div class="gm">
-      <div id="hero" style="width:100%;display:flex;justify-content:center;"  ></div>
+      <div id="hero" style="width:100%;display:flex;justify-content:center"></div>
       <div class="grid" id="grid"></div>
     </div>
   </section>
 
+  <div id="win" class="win" hidden>
+    <div class="wbox">
+      <div class="cup">🏆</div>
+      <h2>¡Lo lograste!</h2>
+      <p>Completaste todo el abecedario 🎉</p>
+      <button class="wb" id="song">🎵 Cantar</button>
+      <button class="wb" id="replay">🔄 Jugar de nuevo</button>
+      <button class="wb o" id="again">Seguir jugando</button>
+    </div>
+  </div>
+
   <script>
     const LET = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ".split("");
-    const W = {A: ["🐝", "Abeja"], B: ["🐳", "Ballena"], C: ["🏠", "Casa"], D: ["🎲", "Dado"], E: ["🐘", "Elefante"], F: ["🌸", "Flor"], G: ["🐱", "Gato"], H: ["🍦", "Helado"], I: ["🏝️", "Isla"], J: ["🦒", "Jirafa"], K: ["🐨", "Koala"], L: ["🦁", "León"], M: ["🦋", "Mariposa"], N: ["☁️", "Nube"], "Ñ": ["🐦", "Ñandú"], O: ["🐻", "Oso"], P: ["🐶", "Perro"], Q: ["🧀", "Queso"], R: ["🐭", "Ratón"], S: ["☀️", "Sol"], T: ["🐢", "Tortuga"], U: ["🍇", "Uvas"], V: ["🐮", "Vaca"], W: ["🧇", "Waffle"], X: ["🎼", "Xilófono"], Y: ["🪀", "Yoyó"], Z: ["🦊", "Zorro"]};
+    const W = { A: ["🐝", "Abeja"], B: ["🐳", "Ballena"], C: ["🏠", "Casa"], D: ["🎲", "Dado"], E: ["🐘", "Elefante"], F: ["🌸", "Flor"], G: ["🐱", "Gato"], H: ["🍦", "Helado"], I: ["🏝️", "Isla"], J: ["🦒", "Jirafa"], K: ["🐨", "Koala"], L: ["🦁", "León"], M: ["🦋", "Mariposa"], N: ["☁️", "Nube"], "Ñ": ["🐦", "Ñandú"], O: ["🐻", "Oso"], P: ["🐶", "Perro"], Q: ["🧀", "Queso"], R: ["🐭", "Ratón"], S: ["☀️", "Sol"], T: ["🐢", "Tortuga"], U: ["🍇", "Uvas"], V: ["🐮", "Vaca"], W: ["🧇", "Waffle"], X: ["🎼", "Xilófono"], Y: ["🪀", "Yoyó"], Z: ["🦊", "Zorro"] };
     const PAL = ["#a855e0", "#f0506e", "#3fb56b", "#f59a1f", "#22a9d0", "#7d5be0"];
     const $ = id => document.getElementById(id);
-    let soundOn = true, mode = "learn", cur = null, target = null, lock = false, speakText = "";
+    let soundOn = true, mode = "learn", cur = null;
     const seen = new Set(), keys = {};
 
     function say(t, force) {
-      speakText = t;
       try {
         if (!(soundOn || force) || !window.speechSynthesis) return;
         speechSynthesis.cancel();
@@ -613,8 +664,8 @@
       } catch (e) { }
     }
     const phrase = l => l.toLowerCase() + " de " + W[l][1].toLowerCase();
-    function bounce(el) {el.classList.remove("pop"); void el.offsetWidth; el.classList.add("pop")}
-    function show(id) {document.querySelectorAll(".screen").forEach(s => s.classList.toggle("on", s.id === id)); window.scrollTo(0, 0)}
+    function bounce(el) { el.classList.remove("pop"); void el.offsetWidth; el.classList.add("pop") }
+    function show(id) { document.querySelectorAll(".screen").forEach(s => s.classList.toggle("on", s.id === id)); window.scrollTo(0, 0) }
     function burst() {
       const E = ["⭐", "🎉", "✨", "🌈"];
       for (let i = 0; i < 14; i++) {
@@ -629,11 +680,11 @@
     ["A", "B", "E", "G", "L", "O", "P", "S", "T", "Z"].forEach((l, i) => {
       const b = document.createElement("button"); b.className = "fr"; b.style.setProperty("--c", ["#f2b632", "#f0506e", "#5ccb5a", "#22a9d0", "#a855e0"][i % 5]);
       b.innerHTML = W[l][0] + "<i>" + l + "</i>"; b.setAttribute("aria-label", W[l][1]);
-      b.onclick = () => {bounce(b); start("learn", l)};
+      b.onclick = () => { bounce(b); start("learn", l) };
       $("friends").appendChild(b);
     });
     document.querySelectorAll("[data-m]").forEach(b => b.onclick = () => start(b.dataset.m));
-    $("menu").onclick = () => {show("home"); window.speechSynthesis && speechSynthesis.cancel()};
+    $("menu").onclick = () => { show("home"); window.speechSynthesis && speechSynthesis.cancel() };
     document.querySelectorAll(".snd").forEach(b => b.onclick = () => {
       soundOn = !soundOn; document.querySelectorAll(".snd").forEach(x => x.textContent = soundOn ? "🔊" : "🔇");
       if (!soundOn && window.speechSynthesis) speechSynthesis.cancel();
@@ -641,45 +692,95 @@
 
     // juego: todas las letras a la vista
     LET.forEach((l, i) => {
-      const b = document.createElement("button"); b.className = "k" + ("AEIOU".includes(l) ? " v" : "");
+      const b = document.createElement("button"); b.className = "k";
       b.textContent = l; b.style.setProperty("--c", PAL[i % 6]); b.setAttribute("aria-label", "Letra " + l);
-      b.onclick = () => tap(l, b); keys[l] = b; $("grid").appendChild(b);
+      b.onclick = () => tap(l); keys[l] = b; $("grid").appendChild(b);
     });
-    function card(l, word) {
+    const NAMES = { A: "a", B: "be", C: "ce", D: "de", E: "e", F: "efe", G: "ge", H: "hache", I: "i", J: "jota", K: "ka", L: "ele", M: "eme", N: "ene", "Ñ": "eñe", O: "o", P: "pe", Q: "cu", R: "erre", S: "ese", T: "te", U: "u", V: "uve", W: "uve doble", X: "equis", Y: "ye", Z: "zeta" };
+    const stg = {};
+    function card(l, word, dots) {
       const i = LET.indexOf(l);
-      $("hero").innerHTML = '<div class="big" id="bigc" style="--c:' + PAL[i % 6] + '"><span class="st' + (seen.has(l) ? " on" : "") + '">⭐</span><div class="L">' + l + "<i>" + l.toLowerCase() + '</i></div><div class="e">' + W[l][0] + '</div><div class="wd">' + word + '</div><button class="sp" id="sp" aria-label="Escuchar">🔊</button></div>';
-      $("sp").onclick = e => {e.stopPropagation(); say(speakText, true); bounce($("bigc"))};
-      $("bigc").onclick = () => {say(speakText, true); bounce($("bigc"))};
+      $("hero").innerHTML = '<div class="big" id="bigc" style="--c:' + PAL[i % 6] + '"><span class="st' + (seen.has(l) ? " on" : "") + '">⭐</span><span class="dots"><i class="' + (dots > 0 ? "f" : "") + '"></i><i class="' + (dots > 1 ? "f" : "") + '"></i></span><button class="L" id="lt" aria-label="Letra ' + l + '">' + l + "<i>" + l.toLowerCase() + '</i></button><div class="e">' + W[l][0] + '</div><div class="wd">' + word + '</div></div>';
+      $("lt").onclick = () => bounce($("bigc"));
+      $("bigc").onclick = () => bounce($("bigc"));
       bounce($("bigc"));
     }
+    function placeholder() {
+      cur = null; sel(null);
+      $("hero").innerHTML = '<div class="big ph" style="--c:#7d5be0"><div class="e">🔤</div><div class="wd">¡Escoge una letra!</div></div>';
+    }
+    function learnCard(l) { const t = stg[l] || 0; card(l, t >= 2 ? W[l][1] : (t === 1 ? "¡Toca otra vez!" : "Toca la letra"), t) }
     function mark(l) {
       seen.add(l); keys[l].classList.add("seen"); $("stars").textContent = "⭐ " + seen.size + "/27";
-      if (seen.size === 27) setTimeout(() => {burst(); say("¡Felicidades! ¡Conoces todo el abecedario!", true)}, 2400)
+      if (seen.size === 27) setTimeout(showWin, 1500)
     }
-    function sel(l) {Object.values(keys).forEach(k => k.classList.remove("sel")); if (l) keys[l].classList.add("sel")}
+    function sel(l) { Object.values(keys).forEach(k => k.classList.remove("sel")); if (l) keys[l].classList.add("sel") }
+    function hear() {
+      if (!cur) return;
+      const t = stg[cur] || 0;
+      if (t === 0) { say(NAMES[cur], true); stg[cur] = 1 }
+      else if (t === 1) { say(W[cur][1], true); stg[cur] = 2; mark(cur) }
+      else say(phrase(cur), true);
+      learnCard(cur);
+    }
     function start(m, l) {
-      mode = m; lock = false; show("game");
-      $("game").classList.toggle("vow", m === "vow");
-      $("ttl").textContent = {learn: "Toca y escucha", find: "Encuentra la letra", vow: "Las vocales"}[m];
+      mode = "learn"; show("game");
       $("stars").textContent = "⭐ " + seen.size + "/27";
-      if (m === "find") next(); else pick(l || (m === "vow" ? "A" : "A"));
+      if (l) pick(l); else placeholder();
     }
-    function pick(l) {cur = l; mark(l); sel(l); card(l, W[l][1]); say(phrase(l))}
-    function next() {
-      const pool = LET.filter(l => !seen.has(l)), p = pool.length ? pool : LET;
-      target = p[Math.floor(Math.random() * p.length)]; sel(null);
-      card(target, "¿Dónde está?"); say("Encuentra la letra " + target.toLowerCase());
+    function pick(l) { cur = l; sel(l); learnCard(l) }
+    function tap(l) { l === cur ? hear() : pick(l) }
+
+    // copa y canción final
+
+    // 🎵 TU CANCIÓN: carpeta "cancion" junto a este archivo HTML
+    const winAudio = new Audio("cancion/cancion_ganador.mp3");
+    winAudio.preload = "auto";
+
+    let singing = false, timers = [], actx = null;
+    const MEL = [262, 262, 392, 392, 440, 440, 392, 349, 349, 330, 330, 294, 294, 262, 392, 392, 349, 349, 330, 330, 294, 392, 392, 349, 330, 294, 262];
+    function stopSong() {
+      singing = false; timers.forEach(clearTimeout); timers = [];
+      winAudio.pause(); try { winAudio.currentTime = 0 } catch (e) { }
+      $("song").textContent = "🎵 Cantar";
+      try { speechSynthesis.cancel() } catch (e) { }
     }
-    function tap(l, b) {
-      if (lock) return;
-      if (mode !== "find") return pick(l);
-      if (l === target) {
-        lock = true; mark(l); sel(l); burst(); card(l, W[l][1]); say("¡Muy bien! " + phrase(l));
-        setTimeout(() => {lock = false; if (seen.size < 27) next()}, 2600);
-      } else {
-        b.classList.remove("shake"); void b.offsetWidth; b.classList.add("shake"); say("Inténtalo otra vez");
-      }
+    function sing() {
+      stopSong(); singing = true; $("song").textContent = "⏹ Parar";
+      winAudio.onended = stopSong;
+      // si no se encuentra el archivo, suena la melodía de respaldo
+      winAudio.onerror = () => { if (singing) singBackup() };
+      const p = winAudio.play();
+      if (p && p.catch) p.catch(err => {
+        if (err && err.name === "NotAllowedError") stopSong();   // el navegador pidió un toque: queda el botón "Cantar"
+        else if (singing) singBackup();
+      });
     }
+    // melodía de respaldo (solo si falla el mp3)
+    function tone(f) { if (!actx) return; const o = actx.createOscillator(), g = actx.createGain(), t = actx.currentTime; o.type = "triangle"; o.frequency.value = f; g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(.25, t + .03); g.gain.exponentialRampToValueAtTime(.0001, t + .6); o.connect(g); g.connect(actx.destination); o.start(); o.stop(t + .65) }
+    function singBackup() {
+      stopSong(); singing = true; $("song").textContent = "⏹ Parar";
+      try { actx = actx || new (window.AudioContext || window.webkitAudioContext)() } catch (e) { actx = null }
+      LET.forEach((l, i) => timers.push(setTimeout(() => {
+        tone(MEL[i]);
+        try { if (window.speechSynthesis) { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(NAMES[l]); u.lang = "es-MX"; u.rate = 1.15; u.pitch = 1.4; speechSynthesis.speak(u) } } catch (e) { }
+      }, i * 720 + Math.floor(i / 7) * 350)));
+      timers.push(setTimeout(stopSong, 27 * 720 + 1900));
+    }
+    function showWin() { burst(); $("win").hidden = false; if (soundOn) sing() }
+    $("song").onclick = () => singing ? stopSong() : sing();
+    $("again").onclick = () => { stopSong(); $("win").hidden = true };
+
+    function resetGame() {
+      stopSong(); $("win").hidden = true;
+      seen.clear(); for (const k in stg) delete stg[k];
+      Object.values(keys).forEach(k => k.classList.remove("seen", "sel"));
+      cur = null;
+      try { speechSynthesis.cancel() } catch (e) { }
+      start(mode);
+    }
+    $("reset").onclick = resetGame;
+    $("replay").onclick = resetGame;
   </script>
 </body>
 
